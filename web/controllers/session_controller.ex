@@ -20,6 +20,7 @@ defmodule PhoenixBlog.SessionController do
 	  |> put_flash(:error, "Invalid username/password combination!")
 	  |> redirect(to: session_path(conn, :new))
 	end
+	
 	defp sign_in(user, password, conn) do
 	  if checkpw(password, user.password_digest) do
 	    conn
@@ -30,8 +31,17 @@ defmodule PhoenixBlog.SessionController do
 	    conn
 	    |> put_session(:current_user, nil)
 	    |> put_flash(:error, "Invalid username/password combination!")
-	    |> redirect(to: session_path(conn, :index))
+	    |> redirect(to: session_path(conn, :new))
 	  end
+	end
+	
+	
+	
+	def delete(conn, _params) do
+	  conn
+	  |> delete_session(:current_user)
+	  |> put_flash(:info, "Signed out successfully!")
+	  |> redirect(to: user_path(conn, :index))
 	end
 	
 end

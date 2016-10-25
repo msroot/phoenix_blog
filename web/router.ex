@@ -23,7 +23,7 @@ defmodule PhoenixBlog.Router do
  	 get "/", PostController, :index
  	 resources "/posts", PostController
 	 resources "/users", UserController
-	 resources "/sessions", SessionController, only: [:new, :create]
+	 resources "/sessions", SessionController, only: [:new, :create, :delete]
 	 
   end
 
