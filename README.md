@@ -19,7 +19,15 @@
 	npm install
 
 ##Generate a scaffold
-mix phoenix.gen.html Post posts title body:text
+	mix phoenix.gen.html Post posts title body:text
+
+
+##Edit routes at web/router.ex
+		scope "/", PhoenixBlog do
+			get "/", PostController, :index
+			resources "/posts", PostController
+		end
+
 
 ## Start Phoenix endpoint with 
 	mix phoenix.server
